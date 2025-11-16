@@ -7,77 +7,34 @@
   </head>
   <body>
     <button onclick="
-      const cm= comp_move(Math.random()); //assigns a random move as computer move
-      let oc; // assigns the outcome
-      if (cm === 'Paper'){
-        oc = 'Lost';
-        lose++
-      }
-      else if (cm === 'Scissors'){
-        oc = 'Win';
-        win++
-      }
-      else if(cm === 'Rock'){
-        oc = 'Tie';
-        tie++
-      }
-      alert(outcome(cm,oc))
-      ">
-      Rock
-    </button>
+      play_rock()
+      " class="Rock_button">
+      Rock</button>
     <button onclick="
-      const cm2= comp_move(Math.random());
-      let oc2;
-      if (cm2 === 'Scissors'){
-        oc2 = 'Lost';
-        win++
-      }
-      else if (cm2 === 'Rock'){
-        oc2 = 'Win';
-        lose++
-      }
-      else if(cm2 === 'Paper'){
-        oc2 = 'Tie';
-        tie++
-      }
-      alert(outcome(cm2,oc2))
-      ">
+      play_paper()
+      " class="Paper_button">
       Paper
     </button>
     <button onclick="
-      const cm3= comp_move(Math.random());
-      let oc3;
-      if (cm3 === 'Rock'){
-        oc3 = 'Lost';
-        lose++
-      }
-      else if (cm3 === 'Paper'){
-        oc3 = 'Win'
-        win++
-      }
-      else if(cm3 === 'Scissors'){
-        oc3 = 'Tie'
-        tie++
-      }
-      alert(outcome(cm3,oc3))
-      ">
+      play_scissors()
+      " class="Scissors_button">
       Scissors
     </button>
+    <p class="score"></p>
     <button onclick="
-      alert(disp_score())
-    ">
-      Show score
-    </button>
-    <button onclick="
-      win=0;lose=0;tie=0 // resets the score to zero
+      score.win=0;score.lose=0;score.tie=0 // resets the score to zero
+      update_score() //updates the score
       alert(`Score has been reset`)
+      localStorage.removeItem('score')
       ">
       Reset score
     </button>
     <script>
-      let win = 0;
-      let lose = 0;
-      let tie = 0;
+      let score = JSON.parse(localStorage.getItem('score')) || {
+        win: 0,
+        lose: 0,
+        tie: 0
+      }
       function outcome(comp_move,outcome){
         return `Comp picked ${comp_move}, you ${outcome}`
       }
@@ -93,7 +50,68 @@
         }
       }
       function disp_score(){
-        return (`Win: ${win} Lose: ${lose} Tie: ${tie}`)
+        return (`Win: ${score.win} Lose: ${score.lose} Tie: ${score.tie}`)
+      }
+      score_element = document.querySelector(".score")
+      function update_score(){
+        score_element.innerHTML = disp_score()
+      }
+      function play_rock(){
+        const cm= comp_move(Math.random()); //assigns a random move as computer move
+        let oc; // assigns the outcome
+        if (cm === 'Paper'){
+          oc = 'Lost';
+          score.lose++
+        }
+        else if (cm === 'Scissors'){
+          oc = 'Win';
+          score.win++
+        }
+        else if(cm === 'Rock'){
+          oc = 'Tie';
+          score.tie++
+        }
+        alert(outcome(cm,oc))
+        update_score()
+        localStorage.setItem('score',JSON.stringify(score))
+      }
+      function play_paper(){
+        const cm2= comp_move(Math.random());
+        let oc2;
+        if (cm2 === 'Scissors'){
+          oc2 = 'Lost';
+        score.lose++
+        }
+        else if (cm2 === 'Rock'){
+          oc2 = 'Win';
+          score.win++
+        }
+        else if(cm2 === 'Paper'){
+          oc2 = 'Tie';
+          score.tie++
+        }
+        alert(outcome(cm2,oc2))
+        update_score()
+        localStorage.setItem('score',JSON.stringify(score))
+      }
+      function play_scissors(){
+        const cm3= comp_move(Math.random());
+        let oc3;
+        if (cm3 === 'Rock'){
+          oc3 = 'Lost';
+          score.lose++
+        }
+        else if (cm3 === 'Paper'){
+          oc3 = 'Win'
+          score.win++
+        }
+        else if(cm3 === 'Scissors'){
+          oc3 = 'Tie'
+          score.tie++
+        }
+        alert(outcome(cm3,oc3))
+        update_score()
+        localStorage.setItem('score',JSON.stringify(score))
       }
     </script>
   </body>
