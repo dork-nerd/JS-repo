@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Cart quantity
+    </title>
+  </head>
+  <body>
+    <p>
+      Cart quantity
+    </p>
+    <button onclick="
+    console.log(`cart quantity :${cart_quantity}`);">
+      Show quantity
+    </button>
+    <button onclick="
+    cartQuantity_pos(1);
+    ">
+      Add to cart
+    </button>
+    <button onclick="
+    cartQuantity_pos(2);
+    ">
+      +2
+    </button>
+    <button onclick="
+    cartQuantity_pos(3);
+    ">
+      +3
+    </button>
+    <button onclick="
+    cartQuantity_pos(4);
+    ">
+      +4
+    </button>
+    <button onclick="
+    cartQuantity_pos(5);
+    ">
+      +5
+    </button>
+    <button onclick="cart_quantity= 0;
+    console.log(`cart had been reset`);
+    console.log(`cart quantity :${cart_quantity}`);
+    ">
+      Reset cart
+    </button>
+    <button onclick="
+    cartQuantity_neg(-1);
+    ">
+      Remove from cart
+    </button>
+    <button onclick="
+    cartQuantity_neg(-2);
+    ">
+      -2
+    </button>
+    <button onclick="
+    cartQuantity_neg(-3);
+    ">
+      -3
+    </button>
+
+    <script>
+      let cart_quantity = 0;
+
+      // - sign to be given in parameters
+
+      function cartQuantity_neg(quantity){
+        if ((cart_quantity+quantity)<0){
+          alert(`Not enough items in cart!`);
+        }
+        else{
+          cart_quantity+=quantity;
+          console.log(`cart quantity :${cart_quantity}`);
+        }
+      }
+
+      // + sign to be given in parameters
+        
+      function cartQuantity_pos(quantity){
+        if ((cart_quantity+quantity)>10){
+          alert(`Cart exceeds the limit ! Cart limit is 10 !`);
+        }
+        else{
+          cart_quantity+=quantity;
+          console.log(`cart quantity :${cart_quantity}`);
+        }
+      }
+    </script>
+  </body>
+</html>

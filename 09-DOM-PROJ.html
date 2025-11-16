@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      DOM PROJ
+    </title>
+  </head>
+  <body>
+    <p>
+      You tube subscribe button
+    </p>
+    <button onclick="
+        sub();
+      ">
+      subscribe
+    </button>
+    <script>
+      function sub(){
+        a = document.querySelector('button')
+        if (a.innerHTML === 'subscribe') {
+          a.innerHTML = 'subscribed'
+        }
+        else {
+          a.innerHTML = 'subscribe'
+        }
+      }
+    </script>
+  </body>
+</html>
