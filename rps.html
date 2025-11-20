@@ -20,6 +20,7 @@
       " class="Scissors_button">
       Scissors
     </button>
+    <p class="outcome"></p>
     <p class="score"></p>
     <button onclick="
       score.win=0;score.lose=0;score.tie=0 // resets the score to zero
@@ -56,6 +57,10 @@
       function update_score(){
         score_element.innerHTML = disp_score()
       }
+      outcome_element = document.querySelector(".outcome")
+      function update_outcome(a){
+        outcome_element.innerHTML = a;
+      }
       function play_rock(){
         const cm= comp_move(Math.random()); //assigns a random move as computer move
         let oc; // assigns the outcome
@@ -71,6 +76,7 @@
           oc = 'Tie';
           score.tie++
         }
+        update_outcome(outcome(cm,oc))
         update_score()
         localStorage.setItem('score',JSON.stringify(score))
       }
@@ -89,6 +95,7 @@
           oc2 = 'Tie';
           score.tie++
         }
+        update_outcome(outcome(cm2,oc2))
         update_score()
         localStorage.setItem('score',JSON.stringify(score))
       }
@@ -107,6 +114,7 @@
           oc3 = 'Tie'
           score.tie++
         }
+        update_outcome(outcome(cm3,oc3))
         update_score()
         localStorage.setItem('score',JSON.stringify(score))
       }
