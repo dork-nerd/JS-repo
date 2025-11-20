@@ -1,0 +1,87 @@
+      let score = JSON.parse(localStorage.getItem('score')) || {
+        win: 0,
+        lose: 0,
+        tie: 0
+      }
+      function outcome(comp_move,outcome){
+        return `Comp picked ${comp_move}, you ${outcome}`
+      }
+      function comp_move(a){
+        if (a<1/3){
+          return "Rock"
+        }
+        else if(a>2/3){
+          return "Paper"
+        }
+        else{
+          return "Scissors"
+        }
+      }
+      function disp_score(){
+        return (`Win: ${score.win} Lose: ${score.lose} Tie: ${score.tie}`)
+      }
+      score_element = document.querySelector(".score")
+      function update_score(){
+        score_element.innerHTML = disp_score()
+      }
+      outcome_element = document.querySelector(".outcome")
+      function update_outcome(a){
+        outcome_element.innerHTML = a;
+      }
+      function play_rock(){
+        const cm= comp_move(Math.random()); //assigns a random move as computer move
+        let oc; // assigns the outcome
+        if (cm === 'Paper'){
+          oc = 'Lost';
+          score.lose++
+        }
+        else if (cm === 'Scissors'){
+          oc = 'Win';
+          score.win++
+        }
+        else if(cm === 'Rock'){
+          oc = 'Tie';
+          score.tie++
+        }
+        update_outcome(outcome(cm,oc))
+        update_score()
+        localStorage.setItem('score',JSON.stringify(score))
+      }
+      function play_paper(){
+        const cm2= comp_move(Math.random());
+        let oc2;
+        if (cm2 === 'Scissors'){
+          oc2 = 'Lost';
+        score.lose++
+        }
+        else if (cm2 === 'Rock'){
+          oc2 = 'Win';
+          score.win++
+        }
+        else if(cm2 === 'Paper'){
+          oc2 = 'Tie';
+          score.tie++
+        }
+        update_outcome(outcome(cm2,oc2))
+        update_score()
+        localStorage.setItem('score',JSON.stringify(score))
+      }
+      function play_scissors(){
+        const cm3= comp_move(Math.random());
+        let oc3;
+        if (cm3 === 'Rock'){
+          oc3 = 'Lost';
+          score.lose++
+        }
+        else if (cm3 === 'Paper'){
+          oc3 = 'Win'
+          score.win++
+        }
+        else if(cm3 === 'Scissors'){
+          oc3 = 'Tie'
+          score.tie++
+        }
+        update_outcome(outcome(cm3,oc3))
+        update_score()
+        localStorage.setItem('score',JSON.stringify(score))
+      }
