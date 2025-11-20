@@ -7,28 +7,33 @@
     <link rel="stylesheet" href="rps.css">
   </head>
   <body>
-    <div class="Rock-div">
-      <button onclick="
-        play_rock()"
-        class="Rock_button">
-          Rock
-      </button>
-    </div>
-
-    <div class="Paper-div">
+      <p class="Welcome-msg">
+        Hi, Welcome to the <em class="special">Rock Paper Scissor</em> Game
+      </p>
+    <div class="rps-container">
+      <div class="Rock-div">
         <button onclick="
-          play_paper()"
-          class="Paper_button">
-            Paper
+          play_rock()"
+          class="Rock_button">
+            <img src="images/rock-emoji.png" class="rock-img">
         </button>
-    </div>
+      </div>
 
-    <div class="Scissor-div">
-      <button onclick="
-        play_scissors()"
-        class="Scissors_button">
-          Scissors
-      </button>
+      <div class="Paper-div">
+          <button onclick="
+            play_paper()"
+            class="Paper_button">
+              <img src="images/paper-emoji.png" class="paper-img">
+          </button>
+      </div>
+
+      <div class="Scissors-div">
+        <button onclick="
+          play_scissors()"
+          class="Scissors_button">
+            <img src="images/scissors-emoji.png" class="scissors-img">
+        </button>
+      </div>
     </div>
     
     <p class="outcome"></p>
